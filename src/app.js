@@ -4,7 +4,6 @@ import cors from "cors";
 
 const app = express();
 
-
 app.use(cors(
     {
         origin: process.env.CORS_ORIGIN,
@@ -17,4 +16,15 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }))
 app.use(express.static("public"))
 app.use(cookieParser())
 
-export { app };
+// import routes
+
+import userRouter from "./routes/user.router.js";
+
+// routes declaration
+// http://localhost:8000/api/v1/user/register
+app.use("/api/v1/user", userRouter)
+
+
+
+
+export default app;
